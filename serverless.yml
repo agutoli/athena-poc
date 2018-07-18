@@ -1,0 +1,28 @@
+service: myService
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  timeout: 30
+  versionFunctions: false
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "athena:*"
+         - "glue:*"
+         - "s3:*"
+       Resource:
+         - "*"
+         - "*"
+         - "*"
+
+functions:
+  index:
+    handler: handler.index
+    memorySize: 3008
+    events:
+      - http: ANY /
+      - http: ANY {proxy+}

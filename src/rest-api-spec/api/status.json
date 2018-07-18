@@ -1,0 +1,14 @@
+{
+  "status": {
+    "methods": ["GET"],
+    "url": {
+      "path": "/_status",
+      "paths": ["/_status"],
+      "parts": {
+      },
+      "params": {
+      }
+    },
+    "body": null
+  }
+}
