@@ -62,7 +62,6 @@ class RouterParser {
       return null
     }
 
-
     result.shift()
 
     const values = Array.from(result)
