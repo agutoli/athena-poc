@@ -1,5 +1,5 @@
 const patternTypes = {
-  'string': '([^_][^,^\/]+)',
+  'string': '([^_][^,^\/]*)',
   'list': '([^_][\,a-z0-9\_\-\]+)',
 }
 
@@ -34,7 +34,6 @@ class RouterParser {
 
   _validateAllowedCharacters(values, field) {
     values.forEach((value) => {
-
       if (/^[_|-]/.test(value)) {
         throw new InvalidIndexNameException(`${field} name can not starts with "_" or "-"`)
       }
@@ -62,6 +61,7 @@ class RouterParser {
     if (!result) {
       return null
     }
+
 
     result.shift()
 

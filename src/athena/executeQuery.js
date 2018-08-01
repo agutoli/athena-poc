@@ -22,11 +22,9 @@ module.exports = (QueryString, routerParams, injection) => new Promise((resolve,
       console.log(err, err.stack)
       reject(err)
     } else {
-      var params = {
+      QueryResults({
         QueryExecutionId: data.QueryExecutionId
-      };
-
-      QueryResults(params, (hits) => {
+      }, (hits) => {
         resolve(hits)
       })
     }

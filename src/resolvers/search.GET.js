@@ -12,16 +12,12 @@ module.exports['/_search'] = async ({ routerParams, injection }) => {
 module.exports['/{index}/_search'] = async ({ routerParams, injection }) => {
   const { executeQuery } = Object.assign({}, dependencies, injection)
 
-  return {"not_implemented": "keep calm!"}
-
   let indexes = [routerParams.index]
   if (Array.isArray(routerParams.index)) {
     indexes = routerParams.index.map(x => `index='${x}'`)
   }
 
-  return executeQuery(`
-    SELECT *, "$path" FROM elasticfaker.indexes WHERE (${indexes.join(' OR ')})'
-  `, routerParams)
+  return executeQuery(`SELECT *, "$path" FROM elasticfaker.indexes WHERE (${indexes.join(' OR ')})`, routerParams)
 }
 
 module.exports['/{index}/{type}/_search'] = async ({ routerParams, injection }) => {

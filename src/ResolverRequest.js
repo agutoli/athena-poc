@@ -31,13 +31,20 @@ module.exports = async (event) => {
   if (!resolverName) {
     for(let url in urls) {
       const parts = urls[url][2]
-      routerParams = new RouterParser(url, parts).exec(event.path)
+      routerParams = (new RouterParser(url, parts)).exec(event.path)
       if (routerParams) {
         methods = urls[url][1]
         resolverName = urls[url][0]
         urlMatched = url
         break
       }
+    }
+  }
+
+  if (!resolverName) {
+    return {
+      statusCode: 204,
+      Message: 'no content'
     }
   }
 
@@ -48,13 +55,6 @@ module.exports = async (event) => {
     return {
       statusCode: 501,
       Message: `module '${resolverName}' not Implemented`
-    }
-  }
-
-  if (!resolverName) {
-    return {
-      statusCode: 404,
-      Message: 'not found'
     }
   }
 
