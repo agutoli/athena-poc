@@ -8,6 +8,9 @@ provider:
   runtime: nodejs8.10
   timeout: 30
   versionFunctions: false
+  environment:
+    INDEX:leiloes: "config:timeSeries=true@config:otherOption=false"
+    INDEX:usuarios: "config:timeSeries=false@config:otherOption=false"
   iamRoleStatements:
     -  Effect: "Allow"
        Action:

@@ -1,3 +1,4 @@
+
 const ResolverRequest = require('./ResolverRequest')
 
 module.exports = async (event) => {

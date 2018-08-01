@@ -19,7 +19,7 @@ module.exports = (QueryString, routerParams, injection) => new Promise((resolve,
 
   athena.startQueryExecution(params, function(err, data) {
     if (err) {
-      console.log(err, err.stack)
+      console.error(err, err.stack)
       reject(err)
     } else {
       QueryResults({

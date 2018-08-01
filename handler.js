@@ -2,7 +2,10 @@
 
 const HttpHandler = require('./src/HttpHandler')
 
-module.exports.index = async (event, context, callback) => {
-  const res = await HttpHandler(event)
-  callback(null, res)
+module.exports.index = async (event, context) => {
+  try {
+    return HttpHandler(event)
+  } catch(e) {
+    console.error(e)
+  }
 }

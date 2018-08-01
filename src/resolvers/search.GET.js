@@ -2,14 +2,14 @@ const dependencies = {
   executeQuery: require('../athena/executeQuery')
 }
 
-module.exports['/_search'] = async ({ routerParams, injection }) => {
+module.exports['/_search'] = async (routerParams, injection) => {
   const { executeQuery } = Object.assign({}, dependencies, injection)
   return executeQuery(`
     SELECT *, "$path" FROM elasticfaker.indexes
   `, routerParams)
 }
 
-module.exports['/{index}/_search'] = async ({ routerParams, injection }) => {
+module.exports['/{index}/_search'] = async (routerParams, injection) => {
   const { executeQuery } = Object.assign({}, dependencies, injection)
 
   let indexes = [routerParams.index]
@@ -20,7 +20,7 @@ module.exports['/{index}/_search'] = async ({ routerParams, injection }) => {
   return executeQuery(`SELECT *, "$path" FROM elasticfaker.indexes WHERE (${indexes.join(' OR ')})`, routerParams)
 }
 
-module.exports['/{index}/{type}/_search'] = async ({ routerParams, injection }) => {
+module.exports['/{index}/{type}/_search'] = async (routerParams, injection) => {
   const { executeQuery } = Object.assign({}, dependencies, injection)
 
   let indexes = [routerParams.index]

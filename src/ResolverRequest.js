@@ -1,6 +1,7 @@
 const fs = require('fs')
 const urls = require('./urls')
 const RouterParser = require('./RouterParser')
+const ConfigParse = require('./ConfigParse')
 
 module.exports = async (event) => {
   let resolverName
@@ -49,7 +50,7 @@ module.exports = async (event) => {
   }
 
   const fileName = `${__dirname}/resolvers/${resolverName}.${httpMethod}.js`
-  const settings = require(`${__dirname}/rest-api-spec/api/${resolverName}.json`)
+  const spec = require(`${__dirname}/rest-api-spec/api/${resolverName}.json`)
 
   if (!fs.existsSync(fileName)) {
     return {
@@ -67,5 +68,12 @@ module.exports = async (event) => {
     }
   }
 
-  return resolver[urlMatched]({ request: event.path, routerParams, settings })
+  const settings = ConfigParse(routerParams.index)
+
+  return resolver[urlMatched]({
+    spec,
+    settings,
+    request: event.path,
+    ...routerParams
+  })
 }

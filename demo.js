@@ -14,8 +14,8 @@ var client = new elasticsearch.Client({
 // })
 
 client.create({
-  index: 'myindex',
-  type: 'mytype',
+  index: 'usuarios',
+  type: 'pj',
   id: '1',
   body: {
     title: 'Test 1',

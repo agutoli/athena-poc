@@ -58,8 +58,7 @@ function toJson (rowStr) {
 }
 
 function toArray (arrayStr) {
-  if (!arrayStr) return 
-  console.log(arrayStr.substring(1, arrayStr.length-1).split(', '));
+  if (!arrayStr) return
   return arrayStr.substring(1, arrayStr.length-1).split(', ')
 }
 
